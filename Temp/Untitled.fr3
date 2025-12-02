@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="6.9.3" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="167935" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="45973,5199036806" ReportOptions.Description.Text="" ReportOptions.LastChange="45973,520250787" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end.">
+  <TfrxReportPage Name="" HGuides.Text="" VGuides.Text="" PaperWidth="100" PaperHeight="30" PaperSize="256" LeftMargin="0" RightMargin="0" TopMargin="0" BottomMargin="0" ColumnWidth="0" ColumnPositions.Text="" Frame.Typ="0" MirrorMode="0" OnBeforePrint="Page1OnBeforePrint">
+    <TfrxMemoView Name="Memo1" AllowVectorExport="True" Left="7,55906" Top="9,55906" Width="359,05535" Height="37,79527559" Font.Charset="1" Font.Color="0" Font.Height="-16" Font.Name="Arial" Font.Style="1" Frame.Typ="0" HAlign="haCenter" ParentFont="False" Text="AZEITE FAISAO OLEO COMPO 	STO PET 500ML	"/>
+    <TfrxBarCodeView Name="BarCode1" AllowVectorExport="True" Left="18,55906" Top="57,69295" Width="124" Height="45,35436" BarType="bcCode128" Frame.Typ="0" Rotation="0" TestLine="False" Text="7908435500665" WideBarRatio="2" Zoom="1" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ColorBar="0"/>
+    <TfrxMemoView Name="Memo2" AllowVectorExport="True" Left="143,62214" Top="47,91342" Width="222,99227" Height="45,35436" Font.Charset="1" Font.Color="0" Font.Height="-40" Font.Name="Arial" Font.Style="1" Frame.Typ="0" HAlign="haCenter" ParentFont="False" Text="R$ 6,99"/>
+    <TfrxMemoView Name="Memo4" AllowVectorExport="True" Left="333,37817" Top="94,04731" Width="34,01577" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="0" HAlign="haCenter" ParentFont="False" Text="UN"/>
+  </TfrxReportPage>
+</TfrxReport>

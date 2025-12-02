@@ -1,0 +1,50 @@
+{
+  "00050_003504_1": {
+    "fornecedor": "00050",
+    "nota": "003504",
+    "serie": "1",
+    "data": "2025-11-18",
+    "hora": "17:57:05",
+    "usuario": "2",
+    "produtos_editados": 1,
+    "codigos_produtos": [
+      "014436"
+    ]
+  },
+  "00073_000617_1": {
+    "fornecedor": "00073",
+    "nota": "000617",
+    "serie": "1",
+    "data": "2025-11-19",
+    "hora": "15:50:55",
+    "usuario": "2",
+    "produtos_editados": 1,
+    "codigos_produtos": [
+      "022678"
+    ]
+  },
+  "00019_468308_1": {
+    "fornecedor": "00019",
+    "nota": "468308",
+    "serie": "1",
+    "data": "2025-11-19",
+    "hora": "15:51:15",
+    "usuario": "2",
+    "produtos_editados": 1,
+    "codigos_produtos": [
+      "027353"
+    ]
+  },
+  "00042_541346_1": {
+    "fornecedor": "00042",
+    "nota": "541346",
+    "serie": "1",
+    "data": "2025-11-27",
+    "hora": "09:46:00",
+    "usuario": "2",
+    "produtos_editados": 1,
+    "codigos_produtos": [
+      "002002"
+    ]
+  }
+}
