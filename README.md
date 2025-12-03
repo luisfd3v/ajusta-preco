@@ -88,4 +88,4 @@ Após precificar e gravar, o sistema irá perguntar se deseja gerar etiquetas do
 
 - Etiquetas geradas pelo sistema, ficará na pasta **etiquetas** na pasta raiz do sistema. (*criado automaticamente pelo sistema caso não exista.*)
 
-![opcoes precificacao](assets/opcoes-precificao.png)
+![pasta etiquetas e notas processadas](assets/pasta-etiquetas-notasprocessadas.png)
