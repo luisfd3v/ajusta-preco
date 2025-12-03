@@ -1,0 +1,33 @@
+# Pastas de build e distribuição
+dist/
+build/
+
+# Pastas de arquivos temporários e gerados
+Temp/
+etiquetas/
+
+# Arquivos de dados locais
+notas_processadas.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+
+# Ambientes virtuais
+venv/
+.venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Arquivos de configuração local (descomente se necessário)
+# config.ini
