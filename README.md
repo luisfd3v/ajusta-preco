@@ -18,7 +18,7 @@ Sistema desenvolvido para precificação das notas de entrada, com foco em super
 
 Faça o Download da ultima versão pelo link abaixo:
 
- - [Link de Download](https://github.com/luisfd3v/ajusta-preco/releases/download/v0.9.0/AjustaPreco.zip)
+ - [Link de Download](https://github.com/luisfd3v/ajusta-preco/releases/download/v0.9.0/AjustaPreco-v0.9.0.zip)
 
 Após fazer o Download, crie uma pasta AjustaPreco na pasta raiz do VTi e extraia os arquivos da pasta zip.
 
