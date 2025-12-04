@@ -33,7 +33,7 @@ database = F002
 
 username = sa
 
-password = rkc9576ç*
+password = abc123*
 
 driver = {SQL Server} - ⚠️(não alterar)⚠️
 
