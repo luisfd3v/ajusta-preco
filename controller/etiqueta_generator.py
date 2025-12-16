@@ -1,6 +1,7 @@
 import os
 import sys
 from datetime import datetime
+import configparser
 from reportlab.lib.pagesizes import mm
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
@@ -12,11 +13,58 @@ from io import BytesIO
 
 
 class EtiquetaGenerator:
-    ETIQUETA_WIDTH = 100 * mm
-    ETIQUETA_HEIGHT = 25 * mm
+    DEFAULT_ETIQUETA_WIDTH_MM = 100.0
+    DEFAULT_ETIQUETA_HEIGHT_MM = 25.0
     
     def __init__(self, database):
         self.db = database
+        self.etiqueta_width_mm, self.etiqueta_height_mm, self.offset_y_mm = self._carregar_config_etiqueta()
+        self.etiqueta_width = self.etiqueta_width_mm * mm
+        self.etiqueta_height = self.etiqueta_height_mm * mm
+
+    def _parse_float(self, value, fallback: float) -> float:
+        try:
+            return float(str(value).replace(",", ".").strip())
+        except Exception:
+            return fallback
+
+    def _carregar_config_etiqueta(self) -> tuple[float, float, float]:
+        width_mm = self.DEFAULT_ETIQUETA_WIDTH_MM
+        height_mm = self.DEFAULT_ETIQUETA_HEIGHT_MM
+        offset_y_mm = 0.0
+
+        try:
+            config = configparser.ConfigParser()
+
+            if getattr(sys, 'frozen', False):
+                base_dir = os.path.dirname(sys.executable)
+            else:
+                base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+            config_path = os.path.join(base_dir, "config.ini")
+            config.read(config_path, encoding="utf-8")
+
+            width_mm = self._parse_float(
+                config.get("Etiqueta", "width_mm", fallback=str(width_mm)),
+                width_mm,
+            )
+            height_mm = self._parse_float(
+                config.get("Etiqueta", "height_mm", fallback=str(height_mm)),
+                height_mm,
+            )
+            offset_y_mm = self._parse_float(
+                config.get("Etiqueta", "offset_y_mm", fallback=str(offset_y_mm)),
+                offset_y_mm,
+            )
+        except Exception:
+            pass
+
+        if width_mm <= 0:
+            width_mm = self.DEFAULT_ETIQUETA_WIDTH_MM
+        if height_mm <= 0:
+            height_mm = self.DEFAULT_ETIQUETA_HEIGHT_MM
+
+        return width_mm, height_mm, offset_y_mm
     
     def _obter_codigo_barras(self, codigo_produto):
         if not self.db.connection:
@@ -77,13 +125,14 @@ class EtiquetaGenerator:
     def _desenhar_etiqueta(self, c, produto, y_position, codigo_barras_ean):
         margin_left = -3 * mm
         margin_top = y_position
+        y_shift = self.offset_y_mm * mm
         
         c.setFont("Helvetica-Bold", 14)
         descricao = produto.descricao[:60]
         
         desc_width = c.stringWidth(descricao, "Helvetica-Bold", 14)
-        x_desc = margin_left + (self.ETIQUETA_WIDTH - desc_width) / 2
-        c.drawString(x_desc, margin_top + 20*mm, descricao)
+        x_desc = margin_left + (self.etiqueta_width - desc_width) / 2
+        c.drawString(x_desc, margin_top + 20*mm - y_shift, descricao)
         
         if codigo_barras_ean:
             barcode_img = self._gerar_codigo_barras_imagem(codigo_barras_ean)
@@ -92,7 +141,7 @@ class EtiquetaGenerator:
                     c.drawImage(
                         barcode_img,
                         -13*mm,
-                        margin_top + 1*mm,
+                        margin_top + 1*mm - y_shift,
                         width=63*mm,
                         height=17*mm,
                         preserveAspectRatio=True,
@@ -106,10 +155,10 @@ class EtiquetaGenerator:
         
         preco_width = c.stringWidth(preco_texto, "Helvetica-Bold", 28)
         x_preco = margin_left + 55*mm + (40*mm - preco_width) / 2
-        c.drawString(x_preco, margin_top + 7*mm, preco_texto)
+        c.drawString(x_preco, margin_top + 7*mm - y_shift, preco_texto)
         
         c.setFont("Helvetica", 11)
-        c.drawString(margin_left + 88*mm, margin_top + 2*mm, "UN")
+        c.drawString(margin_left + 88*mm, margin_top + 2*mm - y_shift, "UN")
 
     def gerar_pdf(self, produtos, output_path=None):
         if not produtos:
@@ -136,7 +185,7 @@ class EtiquetaGenerator:
             
             output_path = os.path.join(output_dir, filename)
         
-        c = canvas.Canvas(output_path, pagesize=(self.ETIQUETA_WIDTH, self.ETIQUETA_HEIGHT))
+        c = canvas.Canvas(output_path, pagesize=(self.etiqueta_width, self.etiqueta_height))
         
         for i, produto in enumerate(produtos):
             codigo_barras = self._obter_codigo_barras(produto.codigo)
