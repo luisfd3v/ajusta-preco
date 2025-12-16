@@ -13,7 +13,6 @@ a = Analysis(
     datas=[
         ('config.ini', '.'), 
         ('icon/money-management.ico', 'icon'),
-        ('icon/splash.png', 'icon'),
         ('notas_processadas.json', '.'),
     ] + barcode_datas,
     hiddenimports=[
